@@ -70,6 +70,8 @@ class PatientCrudController extends CrudController
         // ]);
         CRUD::column('gender');
         CRUD::column('address');
+
+        $this->crud->removeButton('show');
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');

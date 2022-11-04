@@ -53,7 +53,8 @@ class App extends Model
         $doc_depts = \App\Models\User::role('Doctor')->select('id','dept_id')->get();
 
         foreach ($doc_depts as $doc_dept) {
-            \App\Models\App::factory(15)->create(
+            
+            \App\Models\App::factory(60)->create(
                 [
                     'dept_id' => $doc_dept->dept_id,
                     'doctor_id' =>$doc_dept->id,

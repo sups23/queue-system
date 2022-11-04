@@ -42,7 +42,7 @@ class DoctorTimeCrudController extends CrudController
         CRUD::column('user');
         CRUD::column('start');
         CRUD::column('end');
-
+        
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');

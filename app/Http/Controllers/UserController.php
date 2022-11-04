@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\AppScheduled;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -11,15 +12,21 @@ class UserController extends Controller
     {
         $depts = \App\Models\Dept::all();
         $apps = $request->user()->appointments;
+        $today_apps_count = [];
         $date = now()->toDateString();
-        $today_apps = \App\Models\App::where('user_id', $request->user()->id)
-                                    ->where('date', $date)
-                                    ->get();
-        $in_queue_count = \App\Models\App::where('date', $date)
-                                        ->where('status', 'Paid')
-                                        ->count();
+        $doctor_ids = \App\Models\App::where('date', $date)
+                                        ->where('user_id', $request->user()->id)
+                                        ->pluck('doctor_id')->toArray();
+        
+        foreach ($doctor_ids as $doc_id) {
+            $doctor = \App\Models\User::find($doc_id);
+            $today_apps_count[$doctor->name] = \App\Models\App::where('date', $date)
+                                                        ->where('doctor_id', $doc_id)
+                                                        ->where('status', 'Paid')
+                                                        ->count();
+        }
 
-        return view('users.dashboard', compact('depts', 'apps', 'today_apps', 'in_queue_count'));
+        return view('users.dashboard', compact('depts', 'apps', 'today_apps_count'));
     }
 
     public function availability(Request $request)
@@ -62,7 +69,7 @@ class UserController extends Controller
             'dept_id' => $doctor->dept_id
         ]);
 
-        Mail::to($request->user()->email)->send(new AppScheduled($date, $request->expected_time, $doctor->name));
+        // Mail::to($request->user()->email)->send(new AppScheduled($date, $request->expected_time, $doctor->name));
 
         return redirect()->route('dashboard')->with('success', 'Appointment booked successfully.');
     }

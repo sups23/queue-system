@@ -22,9 +22,12 @@
                     @endif
                 </div>
 
-                @if ($today_apps)
+                @if ($today_apps_count)
                     <div class="p-6 bg-white border-b border-gray-200 my-1">
-                        <p>{{ $in_queue_count }} pending users in the queue.</p>
+                        You have got {{ count($today_apps_count) }} appointments for today.
+                        @foreach ($today_apps_count as $doctor => $count)
+                            <p>{{ $count }} pending users in the queue for doctor {{ $doctor }}.</p>
+                        @endforeach
                     </div>
                 @endif
                 <div class="p-6 bg-white border-b border-gray-200 my-1">
@@ -36,9 +39,11 @@
                     <br>
                     <form method="GET" action="{{ route('availability') }}">
 
-                        <b>Date</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="date" min="{{ now()->addDays(1)->toDateString() }}" max="{{ now()->addDays(8)->toDateString() }}" name="date">
+                        <b>Date</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="date"
+                            min="{{ now()->addDays(1)->toDateString() }}" max="{{ now()->addDays(8)->toDateString() }}"
+                            name="date">
 
-                        
+
 
                         <br><br>
                         <b>Department</b> &nbsp;&nbsp;

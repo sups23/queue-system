@@ -23,13 +23,14 @@ class AppFactory extends Factory
     public function definition()
     {
         $patients = User::role('Patient')->pluck('id')->toArray();
-        $severities = ['Emergency', 'Urgent', 'Referal', 'Normal'];
+        $arr = ['2022-11-05','2022-11-06','2022-11-07','2022-11-04'];
+
         return [
-            'date' => now()->toDateString(),
+            'date' => $arr[array_rand($arr,1)],
             'user_id' => $patients[array_rand($patients, 1)],
             'status' => 'Unpaid',
-            'severity'=> $severities[array_rand($severities, 1)],
-            'priority' => mt_rand(1,4)
+            'severity'=> 'Normal',
+            'priority' => 1
         ];
 
     }

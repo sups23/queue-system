@@ -48,6 +48,8 @@ class DoctorCrudController extends CrudController
         CRUD::column('id');
         CRUD::column('name');
         CRUD::column('email');
+
+        $this->crud->removeButton('show');
         // CRUD::addColumn([
         //     'label' => 'Doctor',
         //     'type'  => 'text',

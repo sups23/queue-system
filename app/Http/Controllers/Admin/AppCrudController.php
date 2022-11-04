@@ -49,9 +49,8 @@ class AppCrudController extends CrudController
         if (backpack_user()->hasRole('Nurse')) {
             $this->crud->denyAccess('create','delete');
             $this->crud->addClause('where', 'doctor_id', '=', backpack_user()->doctor_id);
+            $this->crud->addClause('where', 'date', '=', now()->toDateString());
         }
-
-        $this->crud->addClause('where', 'date', '=', now()->toDateString());
 
     }
 
