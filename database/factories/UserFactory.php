@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -23,9 +24,24 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
+            'age' => mt_rand(1,80),
+            'gender' => mt_rand(0,1) ? 'Male' : 'Female',
+            'address' => fake()->address()
         ];
     }
 
+    public function patient()
+    {
+        return $this->assignRole('Patient');
+    }
+    public function accountant()
+    {
+        return $this->assignRole('Accountant');
+    }
+    private function assignRole(...$roles)
+    {
+        return $this->afterCreating(fn(User $user) => $user->syncRoles($roles));
+    }
     /**
      * Indicate that the model's email address should be unverified.
      *
