@@ -15,7 +15,7 @@
 
 
 <div class="gallerysec" style="width:100%;height:auto; display:flex; flex-wrap:wrap;justify-content:center">
-    <div class="div1" style="width:250px;height:250px;text-align:center;background-color:rgb(109, 176, 236);"><br>1
+    <div class="div1" style="width:250px;height:250px;text-align:center;background-color:rgb(23, 48, 70);margin-right:25px"><br>
         
     <br><br>
     <h2 class="text-white font-bold" style="font-size:30px;">Heart Rate</h2>
@@ -23,20 +23,20 @@
 <h3 class="text-white px-5">Check your heart and be an healty</h3>
 
     </div>
-    <div class="div1"  style="width:250px;height:250px; text-align:center;background-color:rgb(124, 184, 236);"><br>2
+    <div class="div2"  style="width:250px;height:250px; text-align:center;background-color:rgb(23, 48, 70);margin-right:25px"><br>
     <br><br>
     <h2 class="text-white font-bold " style="font-size:30px;">Lab test</h2>
     <br>
 <h3 class="text-white px-5">Test the blood and see you are fine or not</h3>
 
     </div>
-    <div class="div1" style="width:250px;height:250px;text-align:center;background-color:rgb(109, 176, 236);"><br>3
+    <div class="div3" style="width:250px;height:250px;text-align:center;background-color:rgb(23, 48, 70);margin-right:25px"><br>
         <br><br>
         <h2 class="text-white font-bold"style="font-size:30px;">OPD</h2>
         <br>
 <h3 class="text-white px-5">Check your heart and be an healty</h3>
     </div>
-    <div class="div1" style="width:250px;height:250px;text-align:center; background-color:rgb(124, 184, 236);"><br>4
+    <div class="div4" style="width:250px;height:250px;text-align:center; background-color:rgb(23, 48, 70);margin-right:25px"><br>
         <br><br>
         <h2 class="text-white font-bold"style="font-size:30px;">Symptoms</h2>
         <br>
